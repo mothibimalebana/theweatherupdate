@@ -12,8 +12,9 @@ const weatherApp = (function () {
   const getCity = getResponse().then((response) => {
     const cityConditions = response.currentConditions.conditions;
     const cityFeelsLike = response.currentConditions.feelslike;
+    const cityTemp = response.currentConditions.temp;
 
-    console.log(cityConditions);
+    console.log(cityTemp);
   });
 
   //declare functions down here:
