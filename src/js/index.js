@@ -9,12 +9,26 @@ const weatherApp = (function () {
     );
     return res.json();
   };
-  const getCity = getResponse().then((response) => {
+  const getCityData = getResponse().then((response) => {
+    const citySunrise = response.currentConditions.sunrise;
+    const citySunset = response.currentConditions.sunset;
     const cityConditions = response.currentConditions.conditions;
     const cityFeelsLike = response.currentConditions.feelslike;
+    const cityIcon = response.currentConditions.icon;
     const cityTemp = response.currentConditions.temp;
+    const address = response.resolvedAddress;
 
-    console.log(cityTemp);
+    const cityData = {
+      citySunrise,
+      citySunset,
+      cityConditions,
+      cityFeelsLike,
+      cityIcon,
+      cityTemp,
+      address,
+    };
+
+    console.log(cityData);
   });
 
   //declare functions down here:
