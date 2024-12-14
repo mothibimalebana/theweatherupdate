@@ -9,7 +9,7 @@ const weatherApp = (function () {
     );
     return res.json();
   };
-  const getCityData = getResponse().then((response) => {
+  const getData = getResponse().then((response) => {
     const citySunrise = response.currentConditions.sunrise;
     const citySunset = response.currentConditions.sunset;
     const cityConditions = response.currentConditions.conditions;
@@ -27,10 +27,10 @@ const weatherApp = (function () {
       cityTemp,
       address,
     };
-
-    console.log(cityData);
+    return cityData;
   });
 
+  const getCityData = getData;
   //declare functions down here:
-  console.log(getResponse());
+  console.log(getCityData);
 })();
