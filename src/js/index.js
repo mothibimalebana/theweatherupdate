@@ -2,7 +2,14 @@ import '../css/style.css';
 
 const weatherApp = (function () {
   const container = document.querySelector('.container');
-  container;
+  const city = document.getElementById('city');
+  const temp = document.getElementById('temp');
+  const feelslike = document.getElementById('feelslike');
+  const sunset = document.getElementById('sunset');
+  const sunrise = document.getElementById('sunrise');
+
+  // container.style.background = 'url(``)';
+
   const getCityResponse = async (city) => {
     if (city == undefined) {
       const res = await fetch(
