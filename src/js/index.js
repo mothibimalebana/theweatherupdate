@@ -30,9 +30,8 @@ const weatherApp = (function () {
       `https://api.giphy.com/v1/gifs/translate?api_key=oqVqtKYI8bdtGH4vFdngKiJ7GGC0wX2I&s=${weatherIcon}&weirdness=4`,
       { mode: 'cors' }
     );
-    console.log(res.json());
+    return res.json();
   };
-  getWeatherGIF();
   const getCityData = (city) => {
     const getCityData = getCityResponse(city).then((response) => {
       const citySunrise = response.currentConditions.sunrise;
@@ -52,11 +51,15 @@ const weatherApp = (function () {
         cityTemp,
         address,
       };
-      console.log(cityData);
       return cityData;
     });
+    return getCityData;
   };
-
   //declare functions down here:
-  console.log(getCityData('midrand'));
+  getCityData('Heidelberg Gauteng').then((res) => {
+    getWeatherGIF('rain').then((res) => {
+      console.log(res.data.images.original.url);
+      container.style.background = `url(${res.data.images.original.url})`;
+    });
+  });
 })();
