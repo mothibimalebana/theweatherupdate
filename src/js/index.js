@@ -7,6 +7,8 @@ const weatherApp = (function () {
   const feelslike = document.getElementById('feelslike');
   const sunset = document.getElementById('sunset');
   const sunrise = document.getElementById('sunrise');
+  const search = document.getElementById('search');
+  const form = document.getElementById('form');
 
   // container.style.background = 'url(``)';
 
@@ -56,11 +58,21 @@ const weatherApp = (function () {
     return getCityData;
   };
   //declare functions down here:
+
   getCityData('Heidelberg Gauteng').then((res) => {
-    console.log(res.cityIcon);
+    city.textContent = res.address;
+    temp.textContent = res.cityTemp;
+    feelslike.textContent = res.cityFeelsLike;
+    sunset.textContent = res.citySunset;
+    sunrise.textContent = res.citySunrise;
+    //background Image
     getWeatherGIF(res.cityIcon).then((res) => {
       console.log(res.data.images.original.url);
       container.style.background = `url(${res.data.images.original.url})`;
     });
+  });
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    console.log(search.value);
   });
 })();
