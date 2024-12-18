@@ -57,7 +57,8 @@ const weatherApp = (function () {
   };
   //declare functions down here:
   getCityData('Heidelberg Gauteng').then((res) => {
-    getWeatherGIF('rain').then((res) => {
+    console.log(res.cityIcon);
+    getWeatherGIF(res.cityIcon).then((res) => {
       console.log(res.data.images.original.url);
       container.style.background = `url(${res.data.images.original.url})`;
     });
