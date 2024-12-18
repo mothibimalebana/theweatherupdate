@@ -73,6 +73,22 @@ const weatherApp = (function () {
   });
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    console.log(search.value);
+    getCityData(`${search.value}`).then(
+      (res) => {
+        city.textContent = res.address;
+        temp.textContent = res.cityTemp;
+        feelslike.textContent = res.cityFeelsLike;
+        sunset.textContent = res.citySunset;
+        sunrise.textContent = res.citySunrise;
+        //background Image
+        getWeatherGIF(res.cityIcon).then((res) => {
+          console.log(res.data.images.original.url);
+          container.style.background = `url(${res.data.images.original.url})`;
+        });
+      },
+      (rej) => {
+        console.log(rej);
+      }
+    );
   });
 })();
